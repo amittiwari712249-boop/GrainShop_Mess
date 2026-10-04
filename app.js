@@ -1,2 +1,41 @@
-const API_URL="https://script.google.com/macros/s/AKfycbzWHDwIbqLasffd8Rzylvu35JmPGoULWFMXhoB0-XRVJ8Y4z5vc98d-vJa7VvwXTdCw/exec";
-const M=[["Sunday","Roti, Daal, Chawal, Paneer/Chicken, Bhujiya, Salad","Roti, Seasonal Vegetable"],["Monday","Roti, Daal, Chawal, Curry Pakoda Chokha/Sambhar, Papad","Roti, Rajma/Tadka"],["Tuesday","Roti, Daal, Chawal Sabji, Mix Veg Sabji, Chatni","Roti, Aalu Matar, Kheer/Sewai"],["Wednesday","Roti, Daal, Chawal, Paneer, Chicken/Fish, Bhujiya, Salad","Roti, Aalu Bhindi, Sweet Chatni"],["Thursday","Roti, Daal, Chawal, Lauki, Green Veg Bhujiya","Roti, Chili Soya"],["Friday","Roti, Daal, Chawal, Egg/Dahi, Aalu Bhujiya","Roti, Seasonal Veg Sabji"],["Saturday","Veg Khichdi, Chatni, Papad, Chokha","Roti, Kabuli Chana, Sewai/Kheer"]];const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];function today(){return new Date().toLocaleDateString("en-IN",{weekday:"long"})}function render(){let t=today(),r=M.find(x=>x[0]==t)||M[0];title.textContent=t+"'s Mess Menu";date.textContent=new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});lunch.textContent=r[1];dinner.textContent=r[2];list.innerHTML=M.map(x=>`<div class="row ${x[0]==t?"today":""}"><div class="day">${x[0]} ${x[0]==t?"• TODAY":""}</div><div class="grid"><div class="meal"><strong>Lunch</strong>${x[1]}</div><div class="meal"><strong>Dinner</strong>${x[2]}</div></div></div>`).join("");days.innerHTML=D.map(x=>`<option>${x}</option>`).join("")}render();document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab,.panel").forEach(x=>x.classList.remove("on"));b.classList.add("on");document.getElementById(b.dataset.x).classList.add("on")});let rating=0;stars.onclick=e=>{let rect=stars.getBoundingClientRect(),n=Math.max(1,Math.min(5,Math.ceil((e.clientX-rect.left)/(rect.width/5))));rating=n;document.getElementById("rating").value=n;stars.textContent="★★★★★";[...stars.childNodes].forEach((x,i)=>{});stars.style.color="#f4b400";stars.setAttribute("title",n+" / 5")};async function send(type,obj,msg){if(!API_URL){msg.textContent="Demo mode: add your Google Apps Script /exec URL in app.js to save data.";msg.style.color="#a15c00";return}try{let r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({type,...obj})});let j=await r.json();msg.textContent=j.message||"Submitted";msg.style.color=j.ok?"#16733a":"#b42318"}catch(e){msg.textContent="Submission failed. Check internet connection.";msg.style.color="#b42318"}}ff.onsubmit=e=>{e.preventDefault();let f=new FormData(ff);if(!rating){alert("Please select a rating.");return}send("feedback",Object.fromEntries(f),fm);ff.reset();rating=0;stars.textContent="★★★★★";stars.style.color="#a9b1bb"};cf.onsubmit=e=>{e.preventDefault();send("change",Object.fromEntries(new FormData(cf)),cm);cf.reset()};share.onclick=()=>{let u=location.href,t="RPF Mess Management – Weekly Menu & Feedback";if(navigator.share)navigator.share({title:t,text:t,url:u});else window.open("https://wa.me/?text="+encodeURIComponent(t+" "+u))}
+const API_URL = "https://script.google.com/macros/s/AKfycbzWHDwIbqLasffd8Rzylvu35JmPGoULWFMXhoB0-XRVJ8Y4z5vc98d-vJa7VvwXTdCw/exec";
+const M = 
+[["Sunday", "Roti, Daal, Chawal, Paneer/Chicken, Bhujiya, Salad", "Roti, Seasonal Vegetable"],
+ ["Monday", "Roti, Daal, Chawal, Curry Pakoda Chokha/Sambhar, Papad", "Roti, Rajma/Tadka"],
+  ["Tuesday", "Roti, Daal, Chawal Sabji, Mix Veg Sabji, Chatni", "Roti, Aalu Matar, Kheer/Sewai"], 
+  ["Wednesday", "Roti, Daal, Chawal, Paneer, Chicken/Fish, Bhujiya, Salad", "Roti, Aalu Bhindi, Sweet Chatni"], 
+  ["Thursday", "Roti, Daal, Chawal, Lauki, Green Veg Bhujiya", "Roti, Chili Soya"],
+   ["Friday", "Roti, Daal, Chawal, Egg/Dahi, Aalu Bhujiya", "Roti, Seasonal Veg Sabji"],
+    ["Saturday", "Veg Khichdi, Chatni, Papad, Chokha", "Roti, Kabuli Chana, Sewai/Kheer"]];
+     const D = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
+     function today() 
+     { return new Date().toLocaleDateString("en-IN", { weekday: "long" }) }
+      function render() 
+      { 
+        let t = today(), r = M.find(x => x[0] == t) || M[0]; title.textContent = t + "'s Mess Menu"; 
+        date.textContent = new Date().toLocaleDateString("en-IN", 
+            { day: "2-digit", month: "long", year: "numeric" }); lunch.textContent = r[1]; 
+            dinner.textContent = r[2]; list.innerHTML = M.map(x => `<div class="row ${x[0] == t ?
+                 "today" : ""}"><div class="day">${x[0]} ${x[0] == t ? "• TODAY" : ""}</div>
+                 <div class="grid"><div class="meal
+                 "><strong>Lunch</strong>${x[1]}</div><div class="meal"><strong>Dinner</strong>${x[2]}</div></div></div>`).join("");
+                  days.innerHTML = D.map(x => `<option>${x}</option>`).join("") } 
+                  render(); document.querySelectorAll(".tab").forEach(b => b.onclick = () => { document.querySelectorAll(".tab,.panel").forEach(x => x.classList.remove("on"));
+                     b.classList.add("on"); document.getElementById(b.dataset.x).classList.add("on") });
+                      let rating = 0; stars.onclick = e => { let rect = stars.getBoundingClientRect(), 
+                        n = Math.max(1, Math.min(5, Math.ceil((e.clientX - rect.left) / (rect.width / 5)))); 
+                        rating = n; document.getElementById("rating").value = n; stars.textContent = "★★★★★";[...stars.childNodes].forEach((x, i) => { }); 
+                        stars.style.color = "#f4b400"; stars.setAttribute("title", n + " / 5") }; 
+                        async function send(type, obj, msg) { if (!API_URL) { msg.textContent = "Demo mode: add your Google Apps Script /exec URL in app.js to save data."; 
+                            msg.style.color = "#a15c00"; return } try
+                             { let r = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+                                body: JSON.stringify({ type, ...obj }) }); let j = await r.json(); msg.textContent = j.message || "Submitted"; 
+                                msg.style.color = j.ok ? "#16733a" : "#b42318" } catch (e) 
+                                { msg.textContent = "Submission failed. Check internet connection."; msg.style.color = "#b42318" } } 
+                                ff.onsubmit = e => { e.preventDefault(); let f = new FormData(ff); if (!rating)
+                                     { alert("Please select a rating."); return } send("feedback", Object.fromEntries(f), fm); 
+                                     ff.reset(); rating = 0; stars.textContent = "★★★★★"; stars.style.color = "#a9b1bb" }; 
+                                     cf.onsubmit = e => { e.preventDefault(); send("change", Object.fromEntries(new FormData(cf)), cm);
+                                         cf.reset() }; share.onclick = () => { let u = location.href, t = "RPF Mess Management – Weekly Menu & Feedback"; 
+                                            if (navigator.share) navigator.share({ title: t, text: t, url: u }); 
+                                            else window.open("https://wa.me/?text=" + encodeURIComponent(t + " " + u)) }

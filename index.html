@@ -1,9 +1,64 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RPF Mess Management</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div><b>RPF MESS</b><small>Weekly Diet • Feedback • Suggestions</small></div><button id="share">↗</button></header>
-<main>
-<section class="hero"><span>THIS WEEK'S MENU</span><h1 id="title"></h1><p id="date"></p><div class="today"><b>Lunch</b><div id="lunch"></div><b>Dinner</b><div id="dinner"></div></div></section>
-<nav><button class="tab on" data-x="menu">📅 Weekly Menu</button><button class="tab" data-x="feedback">⭐ Feedback</button><button class="tab" data-x="change">✏️ Item Change</button></nav>
-<section id="menu" class="panel on"><div class="card"><h2>Weekly Diet Chart</h2><div id="list"></div></div></section>
-<section id="feedback" class="panel"><div class="card"><h2>Give Feedback</h2><form id="ff"><label>Name / Force No. (optional)<input name="name"></label><label>Meal<select name="meal" required><option value="">Select</option><option>Lunch</option><option>Dinner</option></select></label><label>Rating<div id="stars">★ ★ ★ ★ ★</div><input type="hidden" name="rating" id="rating"></label><label>Feedback / Suggestion<textarea name="feedback" required></textarea></label><button class="primary">Submit Feedback</button></form><p id="fm"></p></div></section>
-<section id="change" class="panel"><div class="card"><h2>Suggest Item Change</h2><form id="cf"><label>Day<select name="day" id="days"></select></label><label>Meal<select name="meal"><option>Lunch</option><option>Dinner</option></select></label><label>Current Item(s)<input name="oldItems" required></label><label>Suggested Item(s)<input name="newItems" required></label><label>Reason / Remarks<textarea name="remarks" required></textarea></label><button class="primary">Send Suggestion</button></form><p id="cm"></p></div></section>
-<div class="notice"><b>Mess Committee:</b> Menu changes and suggestions are subject to approval.</div></main><footer>RPF Mess Management • Mobile Friendly</footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>RPF Mess Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div><b>Welcome to RPF GrainShop Mess </b><small>Weekly Diet • Feedback • Suggestions</small></div><button
+            id="share">↗</button>
+    </header>
+    <main>
+        <section class="hero"><span>THIS WEEK'S MENU</span>
+            <h1 id="title"></h1>
+            <p id="date"></p>
+            <div class="today"><b>Lunch</b>
+                <div id="lunch"></div><b>Dinner</b>
+                <div id="dinner"></div>
+            </div>
+        </section>
+        <nav><button class="tab on" data-x="menu">📅 Weekly Menu</button><button class="tab" data-x="feedback">⭐
+                Feedback</button><button class="tab" data-x="change">✏️ Item Change</button></nav>
+        <section id="menu" class="panel on">
+            <div class="card">
+                <h2>Weekly Diet Chart</h2>
+                <div id="list"></div>
+            </div>
+        </section>
+        <section id="feedback" class="panel">
+            <div class="card">
+                <h2>Give Feedback</h2>
+                <form id="ff"><label>Name (optional)<input name="name"></label><label>Meal<select name="meal" required>
+                            <option value="">Select</option>
+                            <option>Lunch</option>
+                            <option>Dinner</option>
+                        </select></label><label>Rating<div id="stars">★ ★ ★ ★ ★</div><input type="hidden" name="rating"
+                            id="rating"></label><label>Feedback / Suggestion<textarea name="feedback"
+                            required></textarea></label><button class="primary">Submit Feedback</button></form>
+                <p id="fm"></p>
+            </div>
+        </section>
+        <section id="change" class="panel">
+            <div class="card">
+                <h2>Suggest Item Change</h2>
+                <form id="cf"><label>Day<select name="day" id="days"></select></label><label>Meal<select name="meal">
+                            <option>Lunch</option>
+                            <option>Dinner</option>
+                        </select></label><label>Current Item(s)<input name="oldItems" required></label><label>Suggested
+                        Item(s)<input name="newItems" required></label><label>Reason / Remarks<textarea name="remarks"
+                            required></textarea></label><button class="primary">Send Suggestion</button></form>
+                <p id="cm"></p>
+            </div>
+        </section>
+        <div class="notice"><b>Mess Committee:</b> Menu changes and suggestions are subject to approval.</div>
+    </main>
+    <footer>RPF Mess Management • Mobile Friendly</footer>
+    <script src="app.js"></script>
+</body>
+
+</html>
